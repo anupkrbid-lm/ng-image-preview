@@ -1,0 +1,47 @@
+<section>
+  <form #checkoutForm="ngForm" (submit)="onSubmit(checkoutForm)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="file-upload">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <p>Want to put your logo?</p>
+                            </div>
+                            <div class="col-sm-3 text-right">
+                                <label class="switch">
+                                <input type="checkbox" name="uploadLogo" [(ngModel)]="uploadLogo" (change)="onToggleLogoUpload($event)">
+                                <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="uploadLogo">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="logo-upload">
+                                    <input type="file"
+                                          (change)="fileUploaded($event)"
+                                          accept="image/*"
+                                          name="image"
+                                          ngModel
+                                          #fileUpload="ngModel"
+                                    >
+                                    <span *ngIf="hideUploadedImage">No Logo Uploaded</span>
+                                    <img [src]="imgSrc" alt="logo" width="100%" *ngIf="!hideUploadedImage">
+                                </div>
+                                <img src="../assets/img/close-icon.png"
+                                    class="img-responsive close-upload"
+                                    alt="close" title="Close"
+                                    (click)="removeUploadedImage()"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
+</section>
